@@ -6,7 +6,10 @@ EditorBuildSettings:
   serializedVersion: 2
   m_Scenes:
   - enabled: 1
-    path: Assets/Scenes/SimpleAR/SimpleAR.unity
+    path: Assets/Project Assets/Scenes/LoginScene.unity
+    guid: c902836ae47d93b439a7632d66aa5272
+  - enabled: 1
+    path: Assets/Project Assets/Scenes/SimpleAR/MainScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
   m_configObjects:
     com.unity.xr.arkit.PlayerSettings: {fileID: 11400000, guid: 2d5fb8e61571b4e3897f221189089fd6,
