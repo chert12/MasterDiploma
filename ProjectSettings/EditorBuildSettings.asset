@@ -11,6 +11,18 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Project Assets/Scenes/SimpleAR/MainScene.unity
     guid: 99c9720ab356a0642a771bea13969a05
+  - enabled: 1
+    path: Assets/Project Assets/Scenes/AboutScene.unity
+    guid: e40f6cd6e2d5609488217b3de901d386
+  - enabled: 1
+    path: Assets/Project Assets/Scenes/ModelInfoScene.unity
+    guid: 04d4e7c194eeab04fa76caa50e5f6107
+  - enabled: 1
+    path: Assets/Project Assets/Scenes/ModelsScene.unity
+    guid: ab896b50f66de49468d8a098a0f37c4f
+  - enabled: 1
+    path: Assets/Project Assets/Scenes/SettingsScene.unity
+    guid: e2a6e19b430f5e84a961dc3bb92f1687
   m_configObjects:
     com.unity.xr.arkit.PlayerSettings: {fileID: 11400000, guid: 2d5fb8e61571b4e3897f221189089fd6,
       type: 2}
