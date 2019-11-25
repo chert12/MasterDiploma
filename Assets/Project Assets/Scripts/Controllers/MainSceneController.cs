@@ -52,16 +52,17 @@ namespace AAStudio.Diploma.Controllers
 			{
 				case Enums.NavigationDrawerButton.AllModels:
 					{
-						PopUp.Create(_view.Ui.transform, "INFO", "All Models");
+						PopUp.Create(_view.Ui.transform, AppConstants.Strings.ErrorTxt, AppConstants.Strings.SectionIsUnderDevelopmentTxt);
 						break;
 					}
 				case Enums.NavigationDrawerButton.MyModels:
 					{
-						PopUp.Create(_view.Ui.transform, "INFO", "My Models");
+						SceneManager.LoadScene(AppConstants.SceneNames.ModelsSceneName, LoadSceneMode.Additive);
 						break;
 					}
 				case Enums.NavigationDrawerButton.MyClasses:
 					{
+						PopUp.Create(_view.Ui.transform, AppConstants.Strings.ErrorTxt, AppConstants.Strings.SectionIsUnderDevelopmentTxt);
 						break;
 					}
 				case Enums.NavigationDrawerButton.Settings:
@@ -71,6 +72,7 @@ namespace AAStudio.Diploma.Controllers
 					}
 				case Enums.NavigationDrawerButton.About:
 					{
+						SceneManager.LoadScene(AppConstants.SceneNames.AboutSceneName, LoadSceneMode.Additive);
 						break;
 					}
 			}
