@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 namespace AAStudio.Diploma.Views
 {
-	public class ModelsSceneView : MonoBehaviour
+	public class ModelsSceneView : BaseView
 	{
 		[SerializeField] private GridLayoutGroup _gridLayout;
 		[SerializeField] private AssetModelsData _modelsData;
@@ -29,6 +29,11 @@ namespace AAStudio.Diploma.Views
 				element.OnInfoBtnClicked += ElementOnInfoBtnClicked;
 			}
 			SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
+		}
+
+		private void OnDestroy()
+		{
+			SceneManager.sceneLoaded -= SceneManagerOnSceneLoaded;
 		}
 
 		private void SceneManagerOnSceneLoaded(Scene scene, LoadSceneMode mode)

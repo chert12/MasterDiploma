@@ -21,11 +21,18 @@ namespace AAStudio.Diploma.Controllers
 		{
 			_view = GetComponent<MainSceneView>();
 			_view.OnNavigationDrawerButtonClicked += NavigationDrawerBtnHandler;
+			SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
 		}
 
 		private void OnDestroy()
 		{
 			_view.OnNavigationDrawerButtonClicked -= NavigationDrawerBtnHandler;
+			SceneManager.sceneLoaded -= SceneManagerOnSceneLoaded;
+		}
+
+		private void SceneManagerOnSceneLoaded(Scene scene, LoadSceneMode mode)
+		{
+			SceneManager.SetActiveScene(scene);
 		}
 
 		private void NavigationDrawerBtnHandler(object sender, Args.TypedEventArgs<Enums.NavigationDrawerButton> args)
