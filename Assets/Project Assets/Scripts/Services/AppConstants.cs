@@ -25,6 +25,7 @@
 			public const string PrefabsFolderName = "Prefabs";
 			public const string PopupPrefabName = "PopUp"; 
 			public const string ModelGridElementPrefabName = "ModelGridElement"; 
+			public const string ModelMainSceneElementPrefabName = "ModelMainSceneElement"; 
 		}
 
 		public class AnimationNames

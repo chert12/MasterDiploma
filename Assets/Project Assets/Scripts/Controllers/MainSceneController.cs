@@ -1,4 +1,6 @@
-﻿using AAStudio.Diploma.Services;
+﻿using AAStudio.Diploma.ScriptableObjects;
+using AAStudio.Diploma.Services;
+using AAStudio.Diploma.Services.Interfaces;
 using AAStudio.Diploma.Views;
 using UnityEngine;
 using UnityEngine.SceneManagement;
@@ -11,6 +13,10 @@ namespace AAStudio.Diploma.Controllers
 
 		#region data
 
+		private IAssetService _assetService;
+
+		[SerializeField] private AssetModelsData _modelDatas;
+		[SerializeField] private PlaceOnPlane _placer;
 		private MainSceneView _view;
 
 		#endregion
@@ -19,14 +25,34 @@ namespace AAStudio.Diploma.Controllers
 
 		private void Start()
 		{
+			_assetService = new LocalAssetService(_modelDatas);
 			_view = GetComponent<MainSceneView>();
+			_view.InitModelsView(_assetService.GetAssetModels().Result.Data);
 			_view.OnNavigationDrawerButtonClicked += NavigationDrawerBtnHandler;
+			_view.OnNewModelSelected += OnNewModelSelected; 
 			SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
+
+
+			OnNewModelSelected(null, new Args.TypedEventArgs<Models.AssetModel>(_assetService.GetAssetModels().Result.Data[0]));
+		}
+
+		private void OnNewModelSelected(object sender, Args.TypedEventArgs<Models.AssetModel> e)
+		{
+			var model = Resources.Load<GameObject>(e.Data.ModelPath);
+			if (null != model)
+			{
+				_placer.placedPrefab = model;
+			}
+			else
+			{
+				Debug.LogWarning("Null asset model");
+			}
 		}
 
 		private void OnDestroy()
 		{
 			_view.OnNavigationDrawerButtonClicked -= NavigationDrawerBtnHandler;
+			_view.OnNewModelSelected -= OnNewModelSelected;
 			SceneManager.sceneLoaded -= SceneManagerOnSceneLoaded;
 		}
 
