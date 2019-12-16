@@ -17,21 +17,22 @@ namespace AAStudio.Diploma.Views
 		private AssetModel _lastClickedModel;
 		private IAssetService _assetService;
 
-		private async void Start()
-		{
-			_assetService = new LocalAssetService(_modelsData);
+        protected override async void Start()
+        {
+            base.Start();
+            _assetService = new LocalAssetService(_modelsData);
 
-			var models = await _assetService.GetAssetModels();
+            var models = await _assetService.GetAssetModels();
 
-			foreach(var model in models.Data)
-			{
-				var element = ModelGridElement.Create(_gridLayout.transform, model);
-				element.OnInfoBtnClicked += ElementOnInfoBtnClicked;
-			}
-			SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
-		}
+            foreach (var model in models.Data)
+            {
+                var element = ModelGridElement.Create(_gridLayout.transform, model);
+                element.OnInfoBtnClicked += ElementOnInfoBtnClicked;
+            }
+            SceneManager.sceneLoaded += SceneManagerOnSceneLoaded;
+        }
 
-		private void OnDestroy()
+        private void OnDestroy()
 		{
 			SceneManager.sceneLoaded -= SceneManagerOnSceneLoaded;
 		}

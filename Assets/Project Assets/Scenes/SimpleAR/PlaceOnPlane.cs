@@ -23,13 +23,20 @@ public class PlaceOnPlane : MonoBehaviour
     public GameObject placedPrefab
     {
         get { return m_PlacedPrefab; }
-        set { m_PlacedPrefab = value; }
+        set
+        {
+            m_PlacedPrefab = value;
+            //if (spawnedObject != null)
+            //{
+            //    Destroy(spawnedObject.gameObject);
+            //}
+        }
     }
 
     /// <summary>
     /// The object instantiated as a result of a successful raycast intersection with a plane.
     /// </summary>
-    public GameObject spawnedObject { get; private set; }
+    public List<GameObject> spawnedObjects { get; private set; }
 
     void Awake()
     {
@@ -68,14 +75,23 @@ public class PlaceOnPlane : MonoBehaviour
             // will be the closest hit.
             var hitPose = s_Hits[0].pose;
 
-            if (spawnedObject == null)
+            //if (spawnedObject == null)
+            //{
+            //    spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, hitPose.rotation);
+            //}
+            //else
+            //{
+            //    spawnedObject.transform.position = hitPose.position;
+            //}
+
+            if (spawnedObjects == null)
             {
-                spawnedObject = Instantiate(m_PlacedPrefab, hitPose.position, hitPose.rotation);
+                spawnedObjects = new List<GameObject>();
             }
-            else
-            {
-                spawnedObject.transform.position = hitPose.position;
-            }
+
+            var obj = Instantiate(m_PlacedPrefab, hitPose.position, hitPose.rotation);
+            obj.transform.localScale = new Vector3(0.1f, 0.1f, 0.1f);
+            spawnedObjects.Add(obj);
         }
     }
 

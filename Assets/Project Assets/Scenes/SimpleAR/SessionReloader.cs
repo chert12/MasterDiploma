@@ -1,4 +1,5 @@
 ﻿using System.Collections;
+using AAStudio.Diploma.Views;
 using UnityEngine;
 using UnityEngine.UI;
 using UnityEngine.XR.ARFoundation;
@@ -14,6 +15,7 @@ public class SessionReloader : MonoBehaviour
     public Button pauseButton;
     public Button resumeButton;
     public Button resetButton;
+    public PlaceOnPlane placer;
 
     public void ReloadSession()
     {
@@ -25,15 +27,23 @@ public class SessionReloader : MonoBehaviour
 
     IEnumerator DoReload()
     {
+        session.Reset();
         Destroy(session.gameObject);
         yield return null;
 
         if (sessionPrefab != null)
         {
             session = Instantiate(sessionPrefab).GetComponent<ARSession>();
-
+            Debug.LogWarning("Sesion reloaded");
+            session.Reset();
+            if (null != placer && null != placer.spawnedObjects)
+            {
+                foreach (var obj in placer.spawnedObjects)
+                {
+                    GameObject.Destroy(obj.gameObject);
+                }
+            }
             // Hook the buttons back up
-            resetButton.onClick.AddListener(session.Reset);
             pauseButton.onClick.AddListener(() => { session.enabled = false; });
             resumeButton.onClick.AddListener(() => { session.enabled = true; });
         }

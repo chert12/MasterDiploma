@@ -23,8 +23,9 @@ namespace AAStudio.Diploma.Views
 
 		#region implementation
 
-		private void Start()
+		protected override void Start()
 		{
+            base.Start();
 			BindButton(_nureSiteBtn, "https://nure.ua", ButtonAction.OpenSite);
 			BindButton(_apotSiteBtn, "http://ad.nure.ua", ButtonAction.OpenSite);
 			BindButton(_email1Btn, "oleksii.chernov@nure.ua", ButtonAction.OpenEmail);

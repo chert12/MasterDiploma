@@ -1,5 +1,6 @@
 ﻿using AAStudio.Diploma.Models;
 using AAStudio.Diploma.ScriptableObjects;
+using AAStudio.Diploma.Services;
 using UnityEngine;
 using UnityEngine.UI;
 
@@ -24,6 +25,7 @@ namespace AAStudio.Diploma.Views
 			_modelNameText.text = model.Name;
 			_modelDescriptionText.text = model.Description;
 			_modelCredentialsText.text = model.Credentials;
+            SceneToSetActive = AppConstants.SceneNames.ModelsSceneName;
 
 			var s = Resources.Load<Sprite>(model.PreviewImagePath);
 

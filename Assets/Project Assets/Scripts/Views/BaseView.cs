@@ -20,9 +20,18 @@ namespace AAStudio.Diploma.Views
 			if (null != _closeButton)
 			{
 				_closeButton.onClick.RemoveAllListeners();
-				_closeButton.onClick.AddListener(() => SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene()));
-			}
+                _closeButton.onClick.AddListener(() =>
+                {
+                    SceneManager.UnloadSceneAsync(SceneManager.GetActiveScene());
+                    if (!string.IsNullOrEmpty(SceneToSetActive))
+                    {
+                        SceneManager.SetActiveScene(SceneManager.GetSceneByName(SceneToSetActive));
+                    }
+                });
+            }
 		}
+
+        protected string SceneToSetActive { get; set; }
 
 		#endregion
 
